@@ -39,13 +39,10 @@ class CustomerDelete extends AbstractCustomer
 
         $xml->startElement('delete_customer');
 
-        if ($this->getCustomerId()) {
-            $xml->writeAttribute('customerid', $this->getCustomerId());
-        } else if ($this->getRecordNo()){
-            $xml->writeAttribute('RECORDNO', $this->getRecordNo());
-        } else {
+        if (!$this->getCustomerId()) {
             throw new InvalidArgumentException('Record No or Customer ID is required for delete');
         }
+        $xml->writeAttribute('customerid', $this->getCustomerId());
 
         $xml->endElement(); //delete_customer
 

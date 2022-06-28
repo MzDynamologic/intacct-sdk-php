@@ -40,10 +40,13 @@ class ContactUpdate extends AbstractContact
         $xml->startElement('update');
         $xml->startElement('CONTACT');
 
-        if (!$this->getContactName()) {
-            throw new InvalidArgumentException('Contact Name is required for update');
+        if ($this->getContactName()) {
+            $xml->writeElement('CONTACTNAME', $this->getContactName(), true);
+        } else if ($this->getRecordNo()){
+            $xml->writeElement('RECORDNO', $this->getRecordNo(), true);
+        } else {
+            throw new InvalidArgumentException('Record No or Contact Name is required for update');
         }
-        $xml->writeElement('CONTACTNAME', $this->getContactName(), true);
 
         $xml->writeElement('PRINTAS', $this->getPrintAs());
         $xml->writeElement('COMPANYNAME', $this->getCompanyName());

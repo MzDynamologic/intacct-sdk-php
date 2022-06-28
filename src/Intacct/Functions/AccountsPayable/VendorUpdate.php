@@ -40,10 +40,13 @@ class VendorUpdate extends AbstractVendor
         $xml->startElement('update');
         $xml->startElement('VENDOR');
 
-        if (!$this->getVendorId()) {
-            throw new InvalidArgumentException('Vendor ID is required for update');
+        if ($this->getVendorId()) {
+            $xml->writeElement('VENDORID', $this->getVendorId(), true);
+        } else if ($this->getRecordNo()) {
+            $xml->writeElement('RECORDNO', $this->getRecordNo(), true);
+        } else {
+            throw new InvalidArgumentException('Record No or Vendor ID is required for update');
         }
-        $xml->writeElement('VENDORID', $this->getVendorId(), true);
 
         $xml->writeElement('NAME', $this->getVendorName());
 

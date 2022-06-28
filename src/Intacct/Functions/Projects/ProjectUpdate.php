@@ -41,9 +41,12 @@ class ProjectUpdate extends AbstractProject
         $xml->startElement('PROJECT');
 
         if (!$this->getProjectId()) {
-            throw new InvalidArgumentException('Project ID is required for update');
+            $xml->writeElement('PROJECTID', $this->getProjectId(), true);
+        } else if ($this->getRecordNo()){
+            $xml->writeElement('RECORDNO', $this->getRecordNo(), true);
+        } else {
+            throw new InvalidArgumentException('Record No or Project ID is required for update');
         }
-        $xml->writeElement('PROJECTID', $this->getProjectId(), true);
 
         $xml->writeElement('NAME', $this->getProjectName());
         $xml->writeElement('PROJECTCATEGORY', $this->getProjectCategory());
