@@ -40,10 +40,13 @@ class CustomerUpdate extends AbstractCustomer
         $xml->startElement('update');
         $xml->startElement('CUSTOMER');
 
-        if (!$this->getCustomerId()) {
-            throw new InvalidArgumentException('Customer ID is required for update');
+        if ($this->getCustomerId()) {
+            $xml->writeElement('CUSTOMERID', $this->getCustomerId(), true);
+        } else if ($this->getRecordNo()){
+            $xml->writeElement('RECORDNO', $this->getRecordNo(), true);
+        } else {
+            throw new InvalidArgumentException('Record No or Customer ID is required for update');
         }
-        $xml->writeElement('CUSTOMERID', $this->getCustomerId(), true);
 
         $xml->writeElement('NAME', $this->getCustomerName());
 
