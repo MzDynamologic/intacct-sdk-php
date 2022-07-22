@@ -40,7 +40,7 @@ class ProjectUpdate extends AbstractProject
         $xml->startElement('update');
         $xml->startElement('PROJECT');
 
-        if (!$this->getProjectId()) {
+        if ($this->getProjectId()) {
             $xml->writeElement('PROJECTID', $this->getProjectId(), true);
         } else if ($this->getRecordNo()){
             $xml->writeElement('RECORDNO', $this->getRecordNo(), true);
