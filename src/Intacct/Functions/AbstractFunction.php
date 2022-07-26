@@ -34,7 +34,7 @@ abstract class AbstractFunction implements FunctionInterface
      *
      * @return string
      */
-    public function getRecordNo(): string
+    public function getRecordNo()
     {
         return $this->recordNo;
     }
@@ -44,7 +44,7 @@ abstract class AbstractFunction implements FunctionInterface
      *
      * @param string $recordNo
      */
-    public function setRecordNo(string $recordNo)
+    public function setRecordNo($recordNo)
     {
         $this->recordNo = $recordNo;
     }
