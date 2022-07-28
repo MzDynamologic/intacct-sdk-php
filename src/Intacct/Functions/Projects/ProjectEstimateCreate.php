@@ -23,7 +23,7 @@ use InvalidArgumentException;
 /**
  * Create a new project record
  */
-class ProjectCreate extends AbstractProjectEstimate
+class ProjectEstimateCreate extends AbstractProjectEstimate
 {
 
     /**
