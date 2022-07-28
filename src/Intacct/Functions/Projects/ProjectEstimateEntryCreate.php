@@ -61,10 +61,10 @@ class ProjectEstimateEntryCreate extends AbstractProjectEstimateEntry
         $xml->writeElement('VENDORID', $this->getVendorId());
         $xml->writeElement('CLASSID', $this->getClassId());
 
-        if ($this->getEstimateDate()) {
-            $xml->startElement('ESTIMATEDATE');
-            $xml->writeDateSplitElements($this->getEstimateDate(), true);
-            $xml->endElement(); //ESTIMATEDATE
+        if ($this->getEffectiveDate()) {
+            $xml->startElement('EFFECTIVEDATE');
+            $xml->writeDateSplitElements($this->getEffectiveDate(), true);
+            $xml->endElement(); //EFFECTIVEDATE
         }
         
 
