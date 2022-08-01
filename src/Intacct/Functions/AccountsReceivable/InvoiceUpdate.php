@@ -40,7 +40,7 @@ class InvoiceUpdate extends AbstractInvoice
         if (!$this->getRecordNo()) {
             throw new InvalidArgumentException('Record No or key is required for update');
         }
-        $xml->writeElement('key', $this->getRecordNo(), true);
+        $xml->writeAttribute('key', $this->getRecordNo());
 
         $xml->writeElement('customerid', $this->getCustomerId(), true);
 
@@ -92,7 +92,7 @@ class InvoiceUpdate extends AbstractInvoice
 
         $this->writeXmlExplicitCustomFields($xml);
 
-        $xml->startElement('invoiceitems');
+        $xml->startElement('updateinvoiceitems');
         if (count($this->getLines()) > 0) {
             foreach ($this->getLines() as $line) {
                 $line->writeXml($xml);
@@ -100,7 +100,7 @@ class InvoiceUpdate extends AbstractInvoice
         } else {
             throw new InvalidArgumentException('AR Invoice must have at least 1 line');
         }
-        $xml->endElement(); //invoiceitems
+        $xml->endElement(); //updateinvoiceitems
 
         $xml->endElement(); //create_invoice
 
