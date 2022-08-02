@@ -32,7 +32,12 @@ class InvoiceLineCreate extends AbstractInvoiceLine
      */
     public function writeXml(XMLWriter &$xml)
     {
-        $xml->startElement('lineitem');
+        if ($this->getInvoiceLineKey()) {
+            $xml->startElement('updatelineitem');
+            $xml->writeAttribute('line_num', $this->getInvoiceLineKey());
+        } else {
+            $xml->startElement('lineitem');
+        }
 
         if (!empty($this->getAccountLabel())) {
             $xml->writeElement('accountlabel', $this->getAccountLabel(), true);
@@ -83,6 +88,6 @@ class InvoiceLineCreate extends AbstractInvoiceLine
             $xml->endElement(); //taxentries
         }
 
-        $xml->endElement(); //lineitem
+        $xml->endElement(); //lineitem or updatelineitem
     }
 }

@@ -26,6 +26,9 @@ abstract class AbstractInvoiceLine
     use CustomFieldsTrait;
 
     /** @var string */
+    protected $invoiceLineKey;
+
+    /** @var string */
     protected $accountLabel;
 
     /** @var string */
@@ -96,6 +99,26 @@ abstract class AbstractInvoiceLine
 
     /** @var AbstractInvoiceLineTaxEntries[] */
     protected $taxEntry = [];
+
+    /**
+     * Get invoice line Key
+     *
+     * @return string
+     */
+    public function getInvoiceLineKey()
+    {
+        return $this->invoiceLineKey;
+    }
+
+    /**
+     * Set invoice line Key
+     *
+     * @param string $accountLabel
+     */
+    public function setInvoiceLineKey($invoiceLineKey)
+    {
+        $this->invoiceLineKey = $invoiceLineKey;
+    }
 
     /**
      * Get account label
