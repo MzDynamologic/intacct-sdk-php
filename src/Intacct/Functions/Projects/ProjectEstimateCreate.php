@@ -43,7 +43,11 @@ class ProjectEstimateCreate extends AbstractProjectEstimate
         // Project ID is not required if auto-numbering is configured in module
         $xml->writeElement('PROJECTID', $this->getProjectId());
 
-        if (!$this->getProjectEstimateId()) {
+        if ($this->getProjectEstimateId()) {
+            $xml->writeElement('PJESTIMATEID', $this->getProjectEstimateId(), true);
+        } elseif ($this->getRecordNo()) {
+            $xml->writeElement('PJESTIMATEID', $this->getRecordNo(), true);
+        } else {
             throw new InvalidArgumentException('Project Estimate Id is required for create');
         }
         $xml->writeElement('PJESTIMATEID', $this->getProjectEstimateId(), true);
