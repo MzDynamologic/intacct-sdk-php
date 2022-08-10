@@ -106,6 +106,7 @@ class InvoicePaymentCreate extends AbstractInvoicePayment
 
         $xml->writeElement('billtopayname', $this->getBillToPayName(), true);
 
+        $xml->startElement('ARPYMTDETAILS');
         if (count($this->getPaymentDetails()) > 0) {
             foreach ($this->getPaymentDetails() as $paymentDetail) {
                 $paymentDetail->writeXml($xml);
@@ -113,6 +114,7 @@ class InvoicePaymentCreate extends AbstractInvoicePayment
         } else {
             throw new InvalidArgumentException('Invoice payments must have at least 1 payment detail.');
         }
+        $xml->endElement(); //ARPYMTDETAILS
 
         //TODO online payment methods
 
