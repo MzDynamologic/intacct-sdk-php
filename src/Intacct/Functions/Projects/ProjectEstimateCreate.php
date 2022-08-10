@@ -48,9 +48,9 @@ class ProjectEstimateCreate extends AbstractProjectEstimate
         } elseif ($this->getRecordNo()) {
             $xml->writeElement('PJESTIMATEID', $this->getRecordNo(), true);
         } else {
-            throw new InvalidArgumentException('Project Estimate Id is required for create');
+//            throw new InvalidArgumentException('Project Estimate Id is required for create'); // No need to throw error because we are creating a new project estimate
         }
-        $xml->writeElement('PJESTIMATEID', $this->getProjectEstimateId(), true);
+//        $xml->writeElement('PJESTIMATEID', $this->getProjectEstimateId(), true); // Do not send project estimate id if not set
 
         $xml->writeElement('DESCRIPTION', $this->getDescription());
         $xml->writeElement('ISPRIMARY', $this->getIsPrimary(), true);
