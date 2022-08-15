@@ -69,15 +69,9 @@ class InvoicePaymentCreate extends AbstractInvoicePayment
         if (!$this->getReceiptDate()) {
             throw new InvalidArgumentException('Receipt Date is required for create');
         }
-        $xml->startElement('receiptdate');
-        $xml->writeDateSplitElements($this->getReceiptDate(), true);
-        $xml->endElement(); //receiptdate
+        $xml->writeElement('receiptdate', $this->getReceiptDate(), true);
 
-        if ($this->getPaymentDate()){
-            $xml->startElement('paymentdate');
-            $xml->writeDateSplitElements($this->getPaymentDate(), true);
-            $xml->endElement(); //paymentdate
-        }
+        $xml->writeElement('paymentdate', $this->getPaymentDate());
 
         $xml->writeElement('amounttopay', $this->getAmountToPay(), true);
         $xml->writeElement('trx_amounttopay', $this->getTrxAmountToPay(), true);
