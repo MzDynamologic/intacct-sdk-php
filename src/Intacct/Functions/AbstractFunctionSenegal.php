@@ -43,12 +43,12 @@ abstract class AbstractFunctionSenegal extends AbstractFunction
     private $_custom_field_list = [];
 
     protected function setCustomFieldList($data){
-        $this->_standard_field_list = $data;
+        $this->_custom_field_list = $data;
     }
 
     protected function getCustomFieldList(): array
     {
-        return $this->_standard_field_list;
+        return $this->_custom_field_list;
     }
 
     protected function getMailingAddressFields(): array

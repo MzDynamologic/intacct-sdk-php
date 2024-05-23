@@ -92,6 +92,7 @@ abstract class AbstractProjectSenegal extends AbstractFunctionSenegal
         }
         $this->setStandardFields($standard_fields);
         $this->setCustomFields($custom_fields);
+        $this->setCustomFieldList(array_keys($custom_fields));
         return array("standard" => $standard_fields, "custom" => $custom_fields, "standard_field_keys" => $standard_field_keys);
     }
 }
